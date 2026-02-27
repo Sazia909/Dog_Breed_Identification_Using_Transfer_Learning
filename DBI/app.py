@@ -4,11 +4,10 @@ from tensorflow.keras.preprocessing import image
 import streamlit as st
 import pandas as pd
 
-labels = pd.read_csv("labels.csv")
+labels = pd.read_csv("DBI/labels.csv")
 class_names = sorted(labels["breed"].unique())
 
-model = tf.keras.models.load_model("model/dog_breed_model.keras")
-
+model = tf.keras.models.load_model("DBI/model/dog_breed_model.keras")
 st.title("🐶 Dog Breed Identifier")
 
 uploaded_file = st.file_uploader("Upload a dog image", type=["jpg","png","jpeg"])
@@ -22,3 +21,4 @@ if uploaded_file:
     breed = class_names[np.argmax(pred)]
 
     st.write("Predicted Breed:", breed)
+
